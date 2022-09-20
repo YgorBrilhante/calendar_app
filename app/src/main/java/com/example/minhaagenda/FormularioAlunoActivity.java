@@ -28,9 +28,16 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
                 Aluno alunoCriado = criaAluno(inputNome, inputTelefone, inputEmail);
                 salvarAluno(alunoCriado);
+/*
+                Intent dados = getIntent();
+                Aluno aluno = (Aluno) dados.getSerializableExtra("aluno");
+                inputNome.setText(aluno.getNome());
+                inputTelefone.setText(aluno.getTelefone());
+                inputEmail.setText(aluno.getEmail());
 
-
+ */
                 finish();
+
             }
         });
 
