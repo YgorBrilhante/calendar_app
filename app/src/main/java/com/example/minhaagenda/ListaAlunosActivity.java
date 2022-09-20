@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 
 public class ListaAlunosActivity extends AppCompatActivity {
@@ -38,19 +41,20 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onResume();
 
         ListView listaDeAlunos = findViewById(R.id.lv_lista_alunos);
+        final List<Aluno> alunos = dao.todos();
 
-        listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
-/*
+        listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos));
+
         listaDeAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Aluno alunoEscolhido = dao.todos().get(position);
-                Intent a = new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class);
-                a.putExtra("aluno", alunoEscolhido);
-                startActivity(a);
 
+                Aluno alunoEscolhido = alunos.get(position);
+                Intent intent = new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class);
+                intent.putExtra("aluno", alunoEscolhido);
+                startActivity(intent);
             }
         });
-*/
+
     }
 }

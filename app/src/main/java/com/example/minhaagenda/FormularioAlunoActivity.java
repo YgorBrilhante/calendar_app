@@ -1,11 +1,12 @@
 package com.example.minhaagenda;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class FormularioAlunoActivity extends AppCompatActivity {
 
@@ -22,24 +23,26 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         EditText inputEmail = findViewById(R.id.et_email);
         Button btnSalvar = findViewById(R.id.btn_salvar);
 
+
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Aluno alunoCriado = criaAluno(inputNome, inputTelefone, inputEmail);
                 salvarAluno(alunoCriado);
-/*
-                Intent dados = getIntent();
-                Aluno aluno = (Aluno) dados.getSerializableExtra("aluno");
-                inputNome.setText(aluno.getNome());
-                inputTelefone.setText(aluno.getTelefone());
-                inputEmail.setText(aluno.getEmail());
 
- */
+
                 finish();
 
             }
         });
+
+        Intent dados = getIntent();
+        Aluno aluno = (Aluno )dados.getSerializableExtra("aluno");
+        inputNome.setText(aluno.getNome());
+        inputTelefone.setText(aluno.getTelefone());
+        inputEmail.setText(aluno.getEmail());
+
 
 
     }
@@ -53,7 +56,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         String telefone = inputTelefone.getText().toString();
         String email = inputEmail.getText().toString();
 
-         Aluno alunoCriado = new Aluno(nome, telefone, email);
-         return alunoCriado;
+        Aluno alunoCriado = new Aluno(nome, telefone, email);
+        return alunoCriado;
     }
 }
